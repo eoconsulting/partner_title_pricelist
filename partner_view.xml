@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_title_pricelist_tree" model="ir.ui.view">
+            <field name="name">res.partner.title.pricelist.tree</field>
+            <field name="model">res.partner.title</field>
+            <field name="inherit_id" ref="base.view_partner_title_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='shortcut']" position="after">
+                    <field name="default_pricelist_id" invisible="context.get('default_domain', False) != 'partner'" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_title_pricelist_form" model="ir.ui.view">
+            <field name="name">res.partner.title.pricelist.form</field>
+            <field name="model">res.partner.title</field>
+            <field name="inherit_id" ref="base.view_partner_title_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='domain']" position="after">
+                    <field name="default_pricelist_id" attrs="{'invisible':[('domain','!=','partner')]}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_title_form" model="ir.ui.view">
+            <field name="name">res.partner.title.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field domain="[('domain', '=', 'partner')]" name="title" on_change="onchange_title(title,context)"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
