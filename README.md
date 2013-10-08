@@ -1,6 +1,8 @@
 Partner Title Pricelist
 =======================
 
+**This project has been moved to https://launchpad.net/~eoc**
+
 Make visible the 'Title' field in the Partner form, and
 add 'Default Pricelist' field in Partner Titles.
 
